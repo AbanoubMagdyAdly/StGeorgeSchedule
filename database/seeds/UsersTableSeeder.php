@@ -61,5 +61,15 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        DB::table('rooms')->insert([
+            'name' => 'StGeorge',
+            'building' => 'EL-Amir',
+            'capacity' => 50,
+            'has_air_conditioner' => true,
+            'has_tv' => true,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }

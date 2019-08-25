@@ -18,8 +18,8 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->string('building');
             $table->integer('capacity');
-            $table->boolean('has_air_conditioner');
-            $table->boolean('has_tv');
+            $table->boolean('has_air_conditioner')->default(false);
+            $table->boolean('has_tv')->default(false);
             $table->timestamps();
         });
     }

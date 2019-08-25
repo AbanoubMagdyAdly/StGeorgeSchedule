@@ -103,15 +103,23 @@
                                 </a>
                             </li>
                             @endif
+                            
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-planet text-blue"></i> {{ __('Schedule') }}
+                        <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Schedule') }}
                     </a>
                 </li>
+                @if(auth()->user()->is_admin)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('room.index') }}">
+                            <i class="ni ni-shop text-red"></i> {{ __('Rooms') }}
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
