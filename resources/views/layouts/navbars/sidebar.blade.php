@@ -109,7 +109,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('schedule.index') }}">
                         <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Schedule') }}
                     </a>
                 </li>
