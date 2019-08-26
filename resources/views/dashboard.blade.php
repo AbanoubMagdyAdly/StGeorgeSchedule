@@ -13,7 +13,7 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
-                                <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2019" name="day">
+                                <input class="form-control datepicker" placeholder="Select date" type="text" value="2019-06-12" name="day">
                             </div>
                         </div>
                         <div class="form-group">

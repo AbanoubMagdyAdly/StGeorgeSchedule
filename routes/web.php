@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::post('schedule/find' , 'ScheduleController@find')->name('schedule.find');
 	Route::get('schedule' , 'ScheduleController@index')->name('schedule.index');
+	Route::post('schedule' , 'ScheduleController@store')->name('schedule.store');
 	Route::resource('room' , 'RoomController');
 });
 

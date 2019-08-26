@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
@@ -13,7 +17,14 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('schedule');
+        
+        $books = DB::table('user_room')->get();
+        foreach ($books as  $book) {
+            $book->user_id = User::find($book->user_id)->name;
+            $book->room_id = Room::find($book->room_id)->name;
+        }
+        
+        return view('schedule',['books'=> $books]);
     }
 
     /**
@@ -28,7 +39,20 @@ class ScheduleController extends Controller
 
     public function find(Request $request)
     {
-        dd($request->all());
+        $rooms = DB::table('user_room')
+        ->where([
+            ['day','=',$request->day],
+            ['to','<',$request->to],
+            ['from','>',$request->from]
+            ])->get('room_id');
+        if($rooms){
+            return view('rooms.availableRooms', [
+                'rooms'=> Room::all(),
+                'from' => $request->from,
+                'to' => $request->to,
+                'day' => $request->day
+            ]);
+        }
     }
 
     /**
@@ -39,7 +63,15 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('user_room')->insert([
+            'room_id' => $request->room_id,
+            'from' =>$request->from,
+            'to' => $request->to,
+            'day' => date("Y-m-d",strtotime($request->day)),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('schedule.index')->withStatus(__('schedule successfully created.'));
     }
 
     /**
