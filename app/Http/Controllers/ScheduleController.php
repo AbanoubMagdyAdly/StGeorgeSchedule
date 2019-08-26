@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ class ScheduleController extends Controller
     public function index()
     {
         
-        $books = DB::table('user_room')->get();
+        $books = DB::table('user_room')->where('day','>',Carbon::yesterday())->get();
         foreach ($books as  $book) {
             $book->user_id = User::find($book->user_id)->name;
             $book->room_id = Room::find($book->room_id)->name;
