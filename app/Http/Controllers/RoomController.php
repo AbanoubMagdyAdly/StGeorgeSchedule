@@ -73,7 +73,10 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $room = Room::find($id);
+        $room->update($request->all());
+
+        return redirect()->route('room.index')->withStatus(__('Room successfully updated.'));
     }
 
     /**

@@ -18,9 +18,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('room.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('room.update',$room->id) }}" autocomplete="off">
                             @csrf
-                            
+                            @method('PUT')
                             <h6 class="heading-small text-muted mb-4">{{ __('room information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
