@@ -1,5 +1,4 @@
-@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('Hello') . ' '. auth()->user()->name, 'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects
-or assigned tasks'), 'class' => 'col-lg-7' ])
+@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('Hello') . ' '. auth()->user()->name])
 
 <link href='{{ asset('packages') }}/core/main.css' rel='stylesheet' />
 <link href='{{ asset('packages') }}/daygrid/main.css' rel='stylesheet' />
@@ -15,7 +14,12 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
 
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
-  
+      var today = new Date()
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = yyyy + '-' + mm + '-' + dd;
+      var approved = ["فى انتظار الموافقة", "تمت الموافقة"];
       var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: [ 'dayGrid', 'timeGrid' ],
         header: {
@@ -23,7 +27,7 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        defaultDate: '2019-08-12',
+        defaultDate: today,
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
         selectMirror: true,
@@ -42,11 +46,16 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
         editable: true,
         eventLimit: true, // allow "more" link when too many events
         events: [
-          @foreach ($books as $book)
+          @foreach ($bookings as $booking)
           {
-            title: '{{$book->room_id}}',
-            start: '{{$book->day}}T{{$book->from}}',
-            end:   '{{$book->day}}T{{$book->to}}'
+            title: '{{$booking->room_id}}'+ approved[{{$booking->is_approved}}],
+            start: '{{$booking->day}}T{{$booking->from}}',
+            end:   '{{$booking->day}}T{{$booking->to}}'
+            @if($booking->is_approved)
+                ,color: '#3cfa6f'
+            @else
+                ,color: '#fcdb00'
+            @endif
           },
           @endforeach
         ]

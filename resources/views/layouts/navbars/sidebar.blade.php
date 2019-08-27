@@ -120,6 +120,14 @@
                         </a>
                     </li>
                 @endif
+
+                @if(auth()->user()->is_admin)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('schedule.showall') }}">
+                            <i class="ni ni-check-bold text-red"></i> {{ __('Approve') }}
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

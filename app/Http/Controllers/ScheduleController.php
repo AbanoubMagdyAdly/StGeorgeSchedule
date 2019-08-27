@@ -19,13 +19,13 @@ class ScheduleController extends Controller
     public function index()
     {
         
-        $books = DB::table('user_room')->where('day','>',Carbon::yesterday())->get();
-        foreach ($books as  $book) {
-            $book->user_id = User::find($book->user_id)->name;
-            $book->room_id = Room::find($book->room_id)->name;
+        $bookings = DB::table('user_room')->where('day','>',Carbon::yesterday())->get();
+        foreach ($bookings as  $booking) {
+            $booking->user_id = User::find($booking->user_id)->name;
+            $booking->room_id = Room::find($booking->room_id)->name;
         }
         
-        return view('schedule',['books'=> $books]);
+        return view('schedule',['bookings'=> $bookings]);
     }
 
     /**
@@ -33,9 +33,15 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showAll()
     {
-        //
+        $bookings = DB::table('user_room')->where('day','>',Carbon::yesterday())->get();
+        foreach ($bookings as  $booking) {
+            $booking->user_id = User::find($booking->user_id)->name;
+            $booking->room_id = Room::find($booking->room_id)->name;
+        }
+        
+        return view('rooms.approve',['bookings'=> $bookings]);
     }
 
     public function find(Request $request)
@@ -90,9 +96,11 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function approve(Request $request)
     {
-        //
+        $res = DB::table('user_room')->where('id', $request->id)->update(['is_approved'=>$request->approve]);
+
+        return redirect()->route('schedule.showall')->withStatus(__('schedule successfully created.'));
     }
 
     /**
