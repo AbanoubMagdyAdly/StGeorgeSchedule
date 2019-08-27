@@ -43,8 +43,8 @@ class ScheduleController extends Controller
         $rooms = DB::table('user_room')->select('room_id')
         ->where([
             ['day','=', date("Y-m-d",strtotime($request->day))],
-            ['to','<=',$request->to],
-            ['from','>=',$request->from]
+            ['to','>=',$request->from],
+            ['from','<=',$request->to]
             ])->get();
             $rooms = $rooms->toArray();
             $bookedRooms = [];
