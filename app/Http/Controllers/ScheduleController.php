@@ -40,20 +40,29 @@ class ScheduleController extends Controller
 
     public function find(Request $request)
     {
-        $rooms = DB::table('user_room')
+        $rooms = DB::table('user_room')->select('room_id')
         ->where([
-            ['day','=',$request->day],
-            ['to','<',$request->to],
-            ['from','>',$request->from]
-            ])->get('room_id');
-        if($rooms){
-            return view('rooms.availableRooms', [
-                'rooms'=> Room::all(),
-                'from' => $request->from,
-                'to' => $request->to,
-                'day' => $request->day
-            ]);
+            ['day','=', date("Y-m-d",strtotime($request->day))],
+            ['to','<=',$request->to],
+            ['from','>=',$request->from]
+            ])->get();
+            $rooms = $rooms->toArray();
+            $bookedRooms = [];
+            foreach ($rooms as $key => $value) {
+                $bookedRooms[] = $value->room_id;
+            }
+        if(empty($rooms)){
+            $availableRooms = Room::all();
+        }else{
+            $availableRooms = DB::table('rooms')
+                    ->whereNotIn('id',$bookedRooms)->get();
         }
+        return view('rooms.availableRooms', [
+            'rooms'=> $availableRooms,
+            'from' => $request->from,
+            'to' => $request->to,
+            'day' => $request->day
+        ]);
     }
 
     /**

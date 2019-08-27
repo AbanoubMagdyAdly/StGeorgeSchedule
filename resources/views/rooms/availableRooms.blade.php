@@ -24,6 +24,14 @@
                                 </button>
                             </div>
                         @endif
+                        @if (empty($rooms[0]))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            No available Rooms
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     </div>
 
                     <div class="table-responsive">
@@ -35,7 +43,6 @@
                                     <th scope="col">{{ __('capacity') }}</th>
                                     <th scope="col">{{ __('has tv') }}</th>
                                     <th scope="col">{{ __('has air conditioner') }}</th>
-                                    <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col">{{ __('Book') }}</th>
                                 </tr>
                             </thead>
@@ -49,7 +56,6 @@
                                         <td>{{ $room->capacity }}</td>
                                         <td>{{ $room->has_tv }}</td>
                                         <td>{{ $room->has_air_conditioner }}</td>
-                                        <td>{{ $room->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="text-right">
                                             <form action="{{ route('schedule.store') }}" method="post">
                                                 @csrf
