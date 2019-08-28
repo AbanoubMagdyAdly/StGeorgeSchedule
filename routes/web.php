@@ -27,5 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('schedule/approve' , 'ScheduleController@approve')->name('schedule.approve');
 	Route::post('schedule' , 'ScheduleController@store')->name('schedule.store');
 	Route::resource('room' , 'RoomController');
+	Route::post('maintenance','RoomController@maintenance')->name('maintenance');
 });
 

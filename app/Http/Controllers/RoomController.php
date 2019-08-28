@@ -91,4 +91,14 @@ class RoomController extends Controller
         $rooms =  Room::all();
         return view('rooms.index',['rooms'=> $rooms]); 
     }
+
+    public function maintenance(Request $request)
+    {
+        if(is_null($request->on)){
+            $request->on = 0;
+        }
+        $room = Room::find($request->id);
+        $room->update(['in_maintenance' => $request->on]);
+        return redirect()->route('room.index');
+    }
 }

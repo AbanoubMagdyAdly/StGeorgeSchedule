@@ -38,7 +38,7 @@
                                     <th scope="col">{{ __('capacity') }}</th>
                                     <th scope="col">{{ __('has tv') }}</th>
                                     <th scope="col">{{ __('has air conditioner') }}</th>
-                                    <th scope="col">{{ __('Creation Date') }}</th>
+                                    <th scope="col">{{ __('Maintenance Mode') }}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -52,7 +52,23 @@
                                         <td>{{ $room->capacity }}</td>
                                         <td>{{ $room->has_tv }}</td>
                                         <td>{{ $room->has_air_conditioner }}</td>
-                                        <td>{{ $room->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>
+                                            <form id="suspend-form" method="POST" action='{{route('maintenance')}}'>
+                                                {{ csrf_field() }}
+                                                <input name="id" value="{{ $room->id }}" hidden>
+                                                @if(!$room->in_maintenance)
+                                                <label class="custom-toggle">
+                                                    <input type="checkbox" onChange="this.form.submit()" name="on" value="1">
+                                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                                </label>
+                                                @else
+                                                <label class="custom-toggle">
+                                                    <input type="checkbox" onChange="this.form.submit()" checked name="on" value="0">
+                                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                                </label>
+                                                @endif
+                                            </form>
+                                        </td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

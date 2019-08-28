@@ -58,9 +58,10 @@ class ScheduleController extends Controller
                 $bookedRooms[] = $value->room_id;
             }
         if(empty($rooms)){
-            $availableRooms = Room::all();
+            $availableRooms = Room::where('in_maintenance', 0)->get();
         }else{
             $availableRooms = DB::table('rooms')
+                    ->where('in_maintenance', 0)
                     ->whereNotIn('id',$bookedRooms)->get();
         }
         return view('rooms.availableRooms', [
