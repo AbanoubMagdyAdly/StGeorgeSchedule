@@ -63,8 +63,8 @@
                                                 <input name="from" value={{ $from }} hidden>
                                                 <input name="to" value={{ $to }} hidden>
                                                 <input name="day" value={{ $day }} hidden>
-                                                <input name="meeting_name" value={{ $meeting_name }} hidden>
-                                                <input name="responsible_person" value={{ $responsible_person }} hidden>
+                                                <input name="meeting_name" value='{{ $meeting_name }}' hidden>
+                                                <input name="responsible_person" value='{{ $responsible_person }}' hidden>
                                                 <button type="submit" class="btn btn-success">
                                                     {{ __('احجز الان') }}
                                                 </button>

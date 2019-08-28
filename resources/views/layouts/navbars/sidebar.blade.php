@@ -96,38 +96,40 @@
                                     {{ __('User profile') }}
                                 </a>
                             </li>
-                            @if(auth()->user()->is_admin)
+                            @can('edit users')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">
                                     {{ __('User Management') }}
                                 </a>
                             </li>
-                            @endif
+                            @endcan
                             
                         </ul>
                     </div>
                 </li>
-
+                @can('view schedule')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('schedule.index') }}">
                         <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Schedule') }}
                     </a>
                 </li>
-                @if(auth()->user()->is_admin)
+                @endcan
+                
+                @can('edit rooms')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('room.index') }}">
                             <i class="ni ni-shop text-red"></i> {{ __('Rooms') }}
                         </a>
                     </li>
-                @endif
+                @endcan
 
-                @if(auth()->user()->is_admin)
+                @can('accept booking')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('schedule.showall') }}">
                             <i class="ni ni-check-bold text-red"></i> {{ __('Approve') }}
                         </a>
                     </li>
-                @endif
+                @endcan
             </ul>
         </div>
     </div>

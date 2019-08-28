@@ -67,12 +67,12 @@
   </script>
 <style>
 
-  body {
+  /* body {
     margin: 40px 10px;
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
-  }
+  } */
 
   #loading {
     display: none;
@@ -81,10 +81,10 @@
     right: 10px;
   }
 
-  #calendar {
+  /* #calendar {
     max-width: 900px;
     margin: 0 auto;
-  }
+  } */
 
 </style>
 <div class="container-fluid mt--7">
