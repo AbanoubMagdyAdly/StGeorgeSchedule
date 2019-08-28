@@ -26,7 +26,7 @@
                         @endif
                         @if (empty($rooms[0]))
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            No available Rooms
+                            لا توجد قاعات فى هذا الميعاد
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -63,8 +63,10 @@
                                                 <input name="from" value={{ $from }} hidden>
                                                 <input name="to" value={{ $to }} hidden>
                                                 <input name="day" value={{ $day }} hidden>
+                                                <input name="meeting_name" value={{ $meeting_name }} hidden>
+                                                <input name="responsible_person" value={{ $responsible_person }} hidden>
                                                 <button type="submit" class="btn btn-success">
-                                                    {{ __('Book Now') }}
+                                                    {{ __('احجز الان') }}
                                                 </button>
                                             </form>    
                                         </td>

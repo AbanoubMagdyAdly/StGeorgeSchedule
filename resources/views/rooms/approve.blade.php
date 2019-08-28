@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('booking Management')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('bookings')])
+    @include('users.partials.header', ['title' => __('الحجز')])
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -10,7 +10,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('bookings') }}</h3>
+                                <h3 class="mb-0">{{ __('الحجز') }}</h3>
                             </div>
                         </div>
                     </div>

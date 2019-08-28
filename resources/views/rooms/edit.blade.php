@@ -58,15 +58,15 @@
                                     @endif
                                 </div>
                                 <div class="custom-control custom-radio mb-3">
-                                <input name="has_tv" class="custom-control-input" id="customRadio5" type="checkbox" value="{{$room->has_tv}}">
+                                <input name="has_tv" class="custom-control-input" id="customRadio5" type="checkbox" checked="{{$room->has_tv}}" value="1">
                                         <label class="custom-control-label" for="customRadio5">Has Tv</label>
                                       </div>
                                       <div class="custom-control custom-radio mb-3">
-                                        <input name="has_air_conditioner" class="custom-control-input" id="customRadio6"  type="checkbox" value="{{$room->has_air_conditioner}}">
+                                        <input name="has_air_conditioner" class="custom-control-input" id="customRadio6"  type="checkbox" checked="{{$room->has_air_conditioner}}" value="1">
                                         <label class="custom-control-label" for="customRadio6">Has Air conditioner</label>
                                       </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('حفظ') }}</button>
                                 </div>
                             </div>
                         </form>

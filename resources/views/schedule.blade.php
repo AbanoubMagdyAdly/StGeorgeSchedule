@@ -21,11 +21,11 @@
       today = yyyy + '-' + mm + '-' + dd;
       var approved = ["فى انتظار الموافقة", "تمت الموافقة"];
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [ 'dayGrid', 'timeGrid' ],
+        plugins: [ 'dayGrid', 'timeGrid' , 'list'],
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
         defaultDate: today,
         navLinks: true, // can click day/week names to navigate views
@@ -48,7 +48,7 @@
         events: [
           @foreach ($bookings as $booking)
           {
-            title: '{{$booking->room_id}}'+ approved[{{$booking->is_approved}}],
+            title: 'قاعة : {{$booking->room_id}} '+ ' اجتماع : {{$booking->meeting_name}} ' + ' المسؤول :  {{$booking->user_id}}',
             start: '{{$booking->day}}T{{$booking->from}}',
             end:   '{{$booking->day}}T{{$booking->to}}'
             @if($booking->is_approved)

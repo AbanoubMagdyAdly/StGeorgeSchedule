@@ -13,22 +13,30 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
-                                <input class="form-control datepicker" placeholder="Select date" type="text" value="12-08-2019" name="day">
+                                <input class="form-control datepicker" placeholder="Select date" type="text" value="12-08-2019" name="day" required>
                             </div>
                         </div>
                         <div class="form-group">
                             From:
-                            <input type="time" class="form-control" value="08:30" step="600" name="from">
+                            <input type="time" class="form-control" value="08:30" step="600" name="from" required>
                         </div>
 
                         <div class="form-group">
                             To:
-                            <input type="time" class="form-control" value="09:30" step="600" name="to">
+                            <input type="time" class="form-control" value="09:30" step="600" name="to" required>
                         </div>
 
                         <div class="form-group">
                             Number of servant:
-                            <input type="number" class="form-control" value="5" step="5" name="number">
+                            <input type="number" class="form-control" value="5" step="5" name="number" required>
+                        </div>
+                        <div class="form-group">
+                            Meeting Name:
+                            <input type="text" class="form-control"  name="meeting_name" required>
+                        </div>
+                        <div class="form-group">
+                            Responsible Person:
+                            <input type="text" class="form-control" name="responsible_person" required>
                         </div>
                         <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                             <input class="custom-control-input" id="customCheck5" type="checkbox" name="need_tv">
@@ -36,7 +44,7 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success mt-4">{{ __('Search For available rooms') }}</button>
+                            <button type="submit" class="btn btn-success mt-4">{{ __('إبحث عن القاعات المتاحة') }}</button>
                         </div>
                 </form>
             </div>

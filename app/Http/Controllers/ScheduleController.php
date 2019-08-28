@@ -67,7 +67,9 @@ class ScheduleController extends Controller
             'rooms'=> $availableRooms,
             'from' => $request->from,
             'to' => $request->to,
-            'day' => $request->day
+            'day' => $request->day,
+            'meeting_name' => $request->meeting_name,
+            'responsible_person' => $request->responsible_person
         ]);
     }
 
@@ -85,6 +87,8 @@ class ScheduleController extends Controller
             'to' => $request->to,
             'day' => date("Y-m-d",strtotime($request->day)),
             'user_id' => Auth::user()->id,
+            'meeting_name' => $request->meeting_name,
+            'responsible_person' => $request->responsible_person
         ]);
 
         return redirect()->route('schedule.index')->withStatus(__('schedule successfully created.'));
