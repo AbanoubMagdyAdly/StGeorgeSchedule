@@ -46,6 +46,7 @@ class ScheduleController extends Controller
 
     public function find(Request $request)
     {
+        $need_tv = $request->need_tv ? 1 : 0 ;
         $rooms = DB::table('user_room')->select('room_id')
         ->where([
             ['day','=', date("Y-m-d",strtotime($request->day))],
@@ -58,11 +59,15 @@ class ScheduleController extends Controller
                 $bookedRooms[] = $value->room_id;
             }
         if(empty($rooms)){
-            $availableRooms = Room::where('in_maintenance', 0)->get();
+            $availableRooms = Room::where('in_maintenance', 0)
+            ->where('capacity','>=',$request->number)
+            ->where('has_tv',$need_tv)->get();
         }else{
             $availableRooms = DB::table('rooms')
                     ->where('in_maintenance', 0)
-                    ->whereNotIn('id',$bookedRooms)->get();
+                    ->whereNotIn('id',$bookedRooms)
+                    ->where('capacity','>=',$request->number)
+                    ->where('has_tv',$need_tv)->get();
         }
         return view('rooms.availableRooms', [
             'rooms'=> $availableRooms,
