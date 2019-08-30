@@ -48,7 +48,7 @@
         events: [
           @foreach ($bookings as $booking)
           {
-            title: 'قاعة : {{$booking->room_id}} '+ ' اجتماع : {{$booking->meeting_name}} ' + ' المسؤول :  {{$booking->user_id}}',
+            title: 'قاعة : {{$booking->room_id}} '+ ' اجتماع : {{$booking->meeting_name}} ' + ' المسؤول :  {{$booking->responsible_person}}',
             start: '{{$booking->day}}T{{$booking->from}}',
             end:   '{{$booking->day}}T{{$booking->to}}'
             @if($booking->is_approved)

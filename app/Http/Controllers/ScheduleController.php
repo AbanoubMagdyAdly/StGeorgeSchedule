@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Room;
+use App\Mail\bookRoom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ScheduleController extends Controller
 {
@@ -96,6 +98,8 @@ class ScheduleController extends Controller
             'meeting_name' => $request->meeting_name,
             'responsible_person' => $request->responsible_person
         ]);
+        Mail::to('abanoub.magdy.adly@gmail.com')
+                ->send(new bookRoom());
 
         return redirect()->route('schedule.index')->withStatus(__('schedule successfully created.'));
     }
