@@ -1,6 +1,7 @@
 @extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('Hello') . ' '. auth()->user()->name, 'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects
 or assigned tasks'), 'class' => 'col-lg-7' ])
 <div class="container-fluid mt--7">
+    @can('make booking')
     <div class="row">
         <div class="col-xl-12 order-xl-1">
             <div class="card bg-secondary shadow">
@@ -50,6 +51,7 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
             </div>
         </div>
     </div>
+    @endcan
 </div>
 @include('layouts.footers.auth')
 </div>
