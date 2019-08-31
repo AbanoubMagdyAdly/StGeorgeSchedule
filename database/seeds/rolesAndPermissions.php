@@ -14,9 +14,10 @@ class rolesAndPermissions extends Seeder
     public function run()
     {
         $super = Role::create(['name' => 'super admin']);
-        $priest = Role::create(['name' => 'priest']);
-        $servant = Role::create(['name' => 'servant']);
-        $viewer = Role::create(['name' => 'viewer']);
+        $priest = Role::create(['name' => 'امين النظام']);
+        $servant = Role::create(['name' => 'امين خدمة']);
+        $secretary = Role::create(['name' => 'مكتب الخدمة']);
+        $viewer = Role::create(['name' => 'متابع']);
 
         $permission = Permission::create(['name' => 'edit users']);
         $super->givePermissionTo($permission);
@@ -29,6 +30,7 @@ class rolesAndPermissions extends Seeder
         $priest->givePermissionTo($permission);
         $servant->givePermissionTo($permission);
         $viewer->givePermissionTo($permission);
+        $secretary->givePermissionTo($permission);
         $super->givePermissionTo($permission);
 
         $permission = Permission::create(['name' => 'accept booking']);
@@ -40,7 +42,10 @@ class rolesAndPermissions extends Seeder
         $servant->givePermissionTo($permission);
         $super->givePermissionTo($permission);
 
-
+        $permission = Permission::create(['name' => 'secretary booking']);
+        $priest->givePermissionTo($permission);
+        $super->givePermissionTo($permission);
+        $secretary->givePermissionTo($permission);
 
     }
 }

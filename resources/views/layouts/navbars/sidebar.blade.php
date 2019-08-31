@@ -77,7 +77,7 @@
                         <span class="nav-link-text" style="color: #f4645f;">{{ __('Account Settings') }}</span>
                     </a>
 
-                    <div class="collapse show" id="navbar-examples">
+                    <div class="collapse" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profile.edit') }}">
@@ -95,6 +95,7 @@
                         </ul>
                     </div>
                 </li>
+
                 @can('view schedule')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('schedule.index') }}">
@@ -115,6 +116,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('schedule.showall') }}">
                             <i class="ni ni-check-bold text-red"></i> {{ __('قبول طلبات الحجز') }}
+                        </a>
+                    </li>
+                @endcan
+
+                @can('secretary booking')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('schedule.secretarybookingForm') }}">
+                            <i class="ni ni-bell-55 text-red"></i> {{ __('حجز مكتب الخدمة') }}
                         </a>
                     </li>
                 @endcan
