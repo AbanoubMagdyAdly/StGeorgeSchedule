@@ -26,18 +26,6 @@
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Settings') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>{{ __('Activity') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>{{ __('Support') }}</span>
-                    </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -80,7 +68,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 text-primary"></i> {{ __('الحجز') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -110,7 +98,7 @@
                 @can('view schedule')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('schedule.index') }}">
-                        <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Schedule') }}
+                        <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('جدول الحجز ') }}
                     </a>
                 </li>
                 @endcan
@@ -118,7 +106,7 @@
                 @can('edit rooms')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('room.index') }}">
-                            <i class="ni ni-shop text-red"></i> {{ __('Rooms') }}
+                            <i class="ni ni-shop text-red"></i> {{ __('القاعات') }}
                         </a>
                     </li>
                 @endcan
@@ -126,7 +114,7 @@
                 @can('accept booking')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('schedule.showall') }}">
-                            <i class="ni ni-check-bold text-red"></i> {{ __('Approve') }}
+                            <i class="ni ni-check-bold text-red"></i> {{ __('قبول طلبات الحجز') }}
                         </a>
                     </li>
                 @endcan

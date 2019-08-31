@@ -35,7 +35,7 @@
                                     <th scope="col">{{ __('from') }}</th>
                                     <th scope="col">{{ __('to') }}</th>
                                     <th scope="col">{{ __('day') }}</th>
-                                    <th scope="col">{{ __('is_approved') }}</th>
+                                    <th scope="col">{{ __('delete') }}</th>
                                     <th scope="col">{{ __('Approve') }}</th>
                                 </tr>
                             </thead>
@@ -49,13 +49,19 @@
                                         <td>{{ $booking->from }}</td>
                                         <td>{{ $booking->to }}</td>
                                         <td>{{ $booking->day }}</td>
-                                        <td>{{ $booking->is_approved }}</td>
+                                        <td>
+                                            <form method="post" action="{{ route('schedule.delete' , $booking->id) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger mt-4">{{ __('الغاء الحجز') }}</button>
+                                            </form>
+                                        </td>
                                         <td class="text-right">
                                             <form method="post" action="{{ route('schedule.approve') }}">
                                                     @csrf
                                                     <input name="id" value="{{$booking->id}}" hidden/>
                                                     @if($booking->is_approved )
-                                                            <button type="submit" name="approve" value="0" class="btn btn-danger mt-4">{{ __('رفض') }}</button>
+                                                            <button type="submit" name="approve" value="0" class="btn btn-warning mt-4">{{ __('رفض') }}</button>
                                                     @else
                                                             <button type="submit" name="approve" value="1" class="btn btn-success mt-4">{{ __('قبول') }}</button>
                                                     @endif

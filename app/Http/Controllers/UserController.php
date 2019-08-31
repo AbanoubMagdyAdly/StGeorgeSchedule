@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create',['roles'=>$roles]);
     }
 
     /**
@@ -40,7 +42,7 @@ class UserController extends Controller
     public function store(UserRequest $request, User $model)
     {
         $user = $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
-        $user->assignRole('servant');
+        $user->assignRole($request->role);
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
@@ -68,7 +70,6 @@ class UserController extends Controller
             $request->merge(['password' => Hash::make($request->get('password'))])
                 ->except([$request->get('password') ? '' : 'password']
         ));
-
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 

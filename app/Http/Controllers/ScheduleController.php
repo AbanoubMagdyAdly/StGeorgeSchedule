@@ -98,7 +98,7 @@ class ScheduleController extends Controller
             'meeting_name' => $request->meeting_name,
             'responsible_person' => $request->responsible_person
         ]);
-        Mail::to('abanoub.magdy.adly@gmail.com')
+        Mail::to(env('SEND_TO', 'abanoub.magdy.adly@gmail.com'))
                 ->send(new bookRoom());
 
         return redirect()->route('schedule.index')->withStatus(__('schedule successfully created.'));
@@ -148,6 +148,9 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('user_room')->where('id', $id)->delete();
+        
+        return redirect()->route('schedule.showall')->withStatus(__('schedule successfully deleted.'));
+
     }
 }

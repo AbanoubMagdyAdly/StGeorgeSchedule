@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('schedule/show' , 'ScheduleController@showAll')->name('schedule.showall')->middleware('permission:accept booking');
 	Route::post('schedule/approve' , 'ScheduleController@approve')->name('schedule.approve')->middleware('permission:accept booking');
 	Route::post('schedule' , 'ScheduleController@store')->name('schedule.store');
+	Route::delete('schedule/{id}' , 'ScheduleController@destroy')->name('schedule.delete');
 	Route::resource('room' , 'RoomController')->middleware('permission:edit rooms');
 	Route::post('maintenance','RoomController@maintenance')->name('maintenance')->middleware('permission:edit rooms');
 });

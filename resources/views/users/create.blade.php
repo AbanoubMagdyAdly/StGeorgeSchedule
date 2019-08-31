@@ -33,6 +33,19 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-role">{{ __('role') }}</label>
+                                    <select class="form-control" name="role">
+                                        @foreach ($roles as $role)
+                                            <option value="{{$role->name}}">{{$role->name}}</option>
+                                        @endforeach
+                                        </select>
+                                    @if ($errors->has('role'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('role') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required>
