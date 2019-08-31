@@ -6,6 +6,7 @@ use App\User;
 use Carbon\Carbon;
 use App\Models\Room;
 use App\Mail\bookRoom;
+use App\Mail\deleteBook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -146,9 +147,15 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        DB::table('user_room')->where('id', $id)->delete();
+        $query = DB::table('user_room')->where('id', $id);
+        $book = $query->get();
+        $user = User::find($book[0]->user_id);
+        Mail::to($user->email)
+                ->send(new deleteBook($book[0] , $request->reason));
+        
+        $query->delete();
         
         return redirect()->route('schedule.showall')->withStatus(__('schedule successfully deleted.'));
 
