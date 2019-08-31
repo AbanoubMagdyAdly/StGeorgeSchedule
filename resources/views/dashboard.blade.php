@@ -51,8 +51,19 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
             </div>
         </div>
     </div>
-    @endcan
 </div>
+    @else
+    <div class="row">
+        <div class="col-xl-12 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-body">
+                    <h1 class="text-center"> welcome </h1>
+                    <h2 class="text-center">انت تستطيع متابعة الجدول </h2>
+                    </div>
+                </div>
+            </div>
+    </div>
+    @endcan
 @include('layouts.footers.auth')
 </div>
 @endsection @push('js')
