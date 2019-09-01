@@ -16,7 +16,6 @@ class BookingService
 
     public function bookRoom($data)
     {
-
         DB::table('user_room')->insert([
             'room_id' => $data->room_id,
             'from' => $data->from,

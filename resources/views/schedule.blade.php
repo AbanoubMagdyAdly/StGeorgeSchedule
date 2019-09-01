@@ -1,4 +1,4 @@
-@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('Hello') . ' '. auth()->user()->name])
+@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('مرحباً') . ' '. auth()->user()->name])
 
 <link href='{{ asset('packages') }}/core/main.css' rel='stylesheet' />
 <link href='{{ asset('packages') }}/daygrid/main.css' rel='stylesheet' />

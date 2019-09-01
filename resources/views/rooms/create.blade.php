@@ -36,10 +36,10 @@
                                 <div class="form-group{{ $errors->has('building') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-building">{{ __('building') }}</label>
                                     <select class="form-control" name="building">
-                                            <option>EL-Amir</option>
-                                            <option>EL-Batal</option>
-                                            <option>EL-Knesa</option>
-                                            <option>EL-Romany</option>
+                                            <option>مبنى الامير</option>
+                                            <option>مبنى البطل</option>
+                                            <option>الكنيسة</option>
+                                            <option>مبنى الروماني</option>
                                         </select>
                                     @if ($errors->has('building'))
                                         <span class="invalid-feedback" role="alert">

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\bookRoom;
-use App\Services\BookingService;
 use Illuminate\Http\Request;
+use App\Services\BookingService;
+use App\Http\Requests\FindAvailableRoomRequest;
 
 class ScheduleController extends Controller
 {
@@ -27,7 +28,7 @@ class ScheduleController extends Controller
         return view('rooms.approve', ['bookings' => $bookings]);
     }
 
-    public function find(Request $request)
+    public function find(FindAvailableRoomRequest $request)
     {
         $bookedRooms = $this->bookingService->getBookedRoomsOnTime($request);
 
@@ -44,7 +45,7 @@ class ScheduleController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {     
         $this->bookingService->bookRoom($request);
 
         return redirect()->route('schedule.index')

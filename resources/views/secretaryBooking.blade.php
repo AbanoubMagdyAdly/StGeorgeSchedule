@@ -1,5 +1,4 @@
-@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('Hello') . ' '. auth()->user()->name, 'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects
-or assigned tasks'), 'class' => 'col-lg-7' ])
+@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('مرحباً') . ' '. auth()->user()->name, 'description' => __('هذه الصفحة مخصصة لمكتب الخدمة لحجز الدور الاول الامير او الدور الاول الروماني فى حلاات العزاء او ما شابه'), 'class' => 'col-lg-7' ])
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col-xl-12 order-xl-1">
@@ -31,7 +30,7 @@ or assigned tasks'), 'class' => 'col-lg-7' ])
                                     <option value="19">الاول الروماني</option>
                                 </select>
                             @if ($errors->has('room'))
-                                <span class="invalid-feedback" room="alert">
+                                <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('room') }}</strong>
                                 </span>
                             @endif

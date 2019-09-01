@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('room Management')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('Rooms')])
+    @include('users.partials.header', ['title' => __('القاعات')])
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -10,10 +10,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('rooms') }}</h3>
+                                <h3 class="mb-0">{{ __('القاعات') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('room.create') }}" class="btn btn-sm btn-primary">{{ __('Add room') }}</a>
+                                <a href="{{ route('room.create') }}" class="btn btn-sm btn-primary">{{ __('اضافة قاعة') }}</a>
                             </div>
                         </div>
                     </div>
@@ -33,13 +33,13 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('building') }}</th>
-                                    <th scope="col">{{ __('capacity') }}</th>
-                                    <th scope="col">{{ __('has tv') }}</th>
-                                    <th scope="col">{{ __('has air conditioner') }}</th>
-                                    <th scope="col">{{ __('Maintenance Mode') }}</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">{{ __('اسم القاعة') }}</th>
+                                    <th scope="col">{{ __('المبنى') }}</th>
+                                    <th scope="col">{{ __('السعة') }}</th>
+                                    <th scope="col">{{ __('يوجد تلفزيون') }}</th>
+                                    <th scope="col">{{ __('يوجد تكيف') }}</th>
+                                    <th scope="col">{{ __('وضع القاعة تحت الصيانة') }}</th>
+                                    <th scope="col">اعدادات</th>
                                 </tr>
                             </thead>
                             <tbody>
