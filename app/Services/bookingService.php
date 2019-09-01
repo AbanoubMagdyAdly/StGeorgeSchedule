@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
-use App\Mail\bookRoom;
-use App\Mail\deleteBook;
-use App\Models\Room;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Room;
+use App\Mail\bookRoom;
+use App\Mail\deleteBook;
+use App\Models\UnBookReasons;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class BookingService
@@ -59,8 +60,17 @@ class BookingService
         $user = User::find($book[0]->user_id);
 
         Mail::to($user->email)
-            ->send(new deleteBook($book[0], $data->reason));
+        ->send(new deleteBook($book[0], $data->reason));
 
+        UnBookReasons::create([
+            'room_id' => $book[0]->room_id,
+            'from' => $book[0]->from,
+            'to' => $book[0]->to,
+            'day' => $book[0]->day,
+            'user_id' => $book[0]->user_id,
+            'reason' => $data->reason
+        ]);
+        
         $query->delete();
 
     }
