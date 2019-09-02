@@ -81,4 +81,10 @@ class ScheduleController extends Controller
     public function secretaryBookingForm(){
         return view('secretaryBooking');
     }
+
+
+    public function unbookReason(){
+        $unBookings = $this->bookingService->getUnBookReason();
+        return view('rooms.unbookReason',['unBookings'=>$unBookings]);
+    }
 }

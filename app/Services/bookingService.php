@@ -128,4 +128,15 @@ class BookingService
 
     }
 
+
+    public function getUnBookReason(){
+        $unBookings = UnBookReasons::where('day', '>', Carbon::yesterday())->get();
+        foreach ($unBookings as $unBooking) {
+            $unBooking->user_id = User::find($unBooking->user_id)->name;
+            $unBooking->room_id = Room::find($unBooking->room_id)->name;
+        }
+        // dd($unBookings);
+        return $unBookings;
+    }
+
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('مرحباً') . ' '. auth()->user()->name, 'description' => __('هذه الصفحة مخصصة لمكتب الخدمة لحجز الدور الاول الامير او الدور الاول الروماني فى حلاات العزاء او ما شابه'), 'class' => 'col-lg-7' ])
+@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('مرحباً') . ' '. auth()->user()->name, 'description' => __('هذه الصفحة مخصصة لمكتب الخدمة لحجز الدور الاول الامير او الدور الاول الروماني فى حالات العزاء او ما شابه'), 'class' => 'col-lg-12' ])
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col-xl-12 order-xl-1">

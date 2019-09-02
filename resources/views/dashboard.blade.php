@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('مرحباً') . ' '. auth()->user()->name, 'description' => __('هذه الصفحة تمنحك البحث عن القاعة المناسبة لخدمتك'), 'class' => 'col-lg-7' ])
+@extends('layouts.app') @section('content') @include('users.partials.header', [ 'title' => __('مرحباً') . ' '. auth()->user()->name, 'description' => __('هذه الصفحة تمنحك البحث عن القاعة المناسبة لخدمتك'), 'class' => 'col-lg-12' ])
+
 <div class="container-fluid mt--7">
     @can('make booking')
     <div class="row">

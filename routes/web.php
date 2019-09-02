@@ -50,5 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
 		
 
 	Route::post('schedule/secretarybooking', 'ScheduleController@secretaryBooking')
-	->name('schedule.secretarybooking')->middleware('permission:secretary booking');
+    ->name('schedule.secretarybooking')->middleware('permission:secretary booking');
+    
+    Route::get('schedule/unbookReason', 'ScheduleController@unbookReason')
+	->name('schedule.unbookReason')->middleware('permission:edit users');
 });

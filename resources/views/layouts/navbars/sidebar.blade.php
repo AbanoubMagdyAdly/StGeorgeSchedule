@@ -20,7 +20,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                     <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
+                        <h6 class="text-overflow m-0">{{ __('مرحباً') }}</h6>
                     </div>
                     <a href="{{ route('profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
@@ -68,7 +68,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('الحجز') }}
+                        <i class="ni ni-controller text-primary"></i> {{ __('الحجز') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -79,15 +79,15 @@
 
                     <div class="collapse" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('User profile') }}
+                            <li class=" nav-item">
+                                <a class=" nav-link" href="{{ route('profile.edit') }}">
+                                    {{ __('الملف الشخصي') }}
                                 </a>
                             </li>
                             @can('edit users')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('User Management') }}
+                                    {{ __('ادارة المستخدمين') }}
                                 </a>
                             </li>
                             @endcan
@@ -99,7 +99,7 @@
                 @can('view schedule')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('schedule.index') }}">
-                        <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('جدول الحجز ') }}
+                        <i class="ni ni-calendar-grid-58 text-green"></i> {{ __('جدول الحجز ') }}
                     </a>
                 </li>
                 @endcan
@@ -107,7 +107,7 @@
                 @can('edit rooms')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('room.index') }}">
-                            <i class="ni ni-shop text-red"></i> {{ __('القاعات') }}
+                            <i class="ni ni-shop text-orange"></i> {{ __('القاعات') }}
                         </a>
                     </li>
                 @endcan
@@ -115,7 +115,7 @@
                 @can('accept booking')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('schedule.showall') }}">
-                            <i class="ni ni-check-bold text-red"></i> {{ __('قبول طلبات الحجز') }}
+                            <i class="ni ni-check-bold text-black"></i> {{ __('قبول طلبات الحجز') }}
                         </a>
                     </li>
                 @endcan
@@ -126,6 +126,14 @@
                             <i class="ni ni-bell-55 text-red"></i> {{ __('حجز مكتب الخدمة') }}
                         </a>
                     </li>
+                @endcan
+
+                @can('edit users')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('schedule.unbookReason') }}">
+                        <i class="ni ni-glasses-2" style="color:#ffa500"></i> {{ __('اسباب الغاء الحجزات') }}
+                    </a>
+                </li>
                 @endcan
             </ul>
         </div>
