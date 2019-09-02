@@ -67,9 +67,9 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                        <div class="custom-control custom-control-alternative custom-checkbox mb-3 text-center">
                             <input class="custom-control-input" id="customCheck5" type="checkbox" name="need_tv">
-                            <label class="custom-control-label" for="customCheck5">Need Presenter (TV)</label>
+                            <label class="custom-control-label" for="customCheck5"><h3 class="text-center" >هل تريد شاشة</h3></label>
                         </div>
 
                         <div class="text-center">
