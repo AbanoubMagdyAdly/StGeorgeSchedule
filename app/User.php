@@ -40,6 +40,7 @@ class User extends Authenticatable
     
     public function rooms()
     {
-        return $this->belongsToMany('App\Models\Room','users_rooms');
+        return $this->belongsToMany('App\Models\Room')->using('App\Models\UserRoom');
     }
+
 }

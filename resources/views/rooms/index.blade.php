@@ -50,8 +50,8 @@
                                            {{ $room->building }}
                                         </td>
                                         <td>{{ $room->capacity }}</td>
-                                        <td>{{ $room->has_tv }}</td>
-                                        <td>{{ $room->has_air_conditioner }}</td>
+                                        <td>{{ $room->has_tv? 'يوجد' : 'لا يوجد' }}</td>
+                                        <td>{{ $room->has_air_conditioner? 'يوجد' : 'لا يوجد' }}</td>
                                         <td>
                                             <form id="suspend-form" method="POST" action='{{route('maintenance')}}'>
                                                 {{ csrf_field() }}
@@ -91,6 +91,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-footer py-4">
+                        <nav class="d-flex justify-content-end" aria-label="...">
+                            {{ $rooms->links() }}
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -54,13 +54,19 @@
             @if($booking->is_approved)
                 ,color: '#3cfa6f'
             @else
-                ,color: '#fcdb00'
+                ,color: '#fcdb00'           
             @endif
+            @if($booking->repeating)
+                ,startRecur	:'{{$booking->day}}'
+                ,daysOfWeek: [(new Date('{{$booking->day}}').getDay())]
+            @endif
+
           },
           @endforeach
         ]
       });
-  
+      calendar.setOption('locale', 'ar');
+
       calendar.render();
     });
   

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Room;
 use App\Mail\bookRoom;
 use App\Mail\deleteBook;
+use App\Models\UserRoom;
 use App\Models\UnBookReasons;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -34,28 +35,27 @@ class BookingService
 
     public function getAllBooking()
     {
-
-        $bookings = DB::table('user_room')->where('day', '>', Carbon::yesterday())->get();
+        $bookings = UserRoom::where('day', '>', Carbon::today()->subWeek())
+                    ->orWhere('repeating',1)->orderByRaw('day DESC')->get();
         foreach ($bookings as $booking) {
             $booking->user_id = User::find($booking->user_id)->name;
             $booking->room_id = Room::find($booking->room_id)->name;
         }
 
         return $bookings;
-
     }
 
     public function approveBooking($data)
     {
 
-        DB::table('user_room')->where('id', $data->id)->update(['is_approved' => $data->approve]);
+        UserRoom::where('id', $data->id)->update(['is_approved' => $data->approve]);
 
     }
 
     public function deleteBooking($data, $id)
     {
 
-        $query = DB::table('user_room')->where('id', $id);
+        $query = UserRoom::where('id', $id);
         $book = $query->get();
         $user = User::find($book[0]->user_id);
 
@@ -130,12 +130,12 @@ class BookingService
 
 
     public function getUnBookReason(){
-        $unBookings = UnBookReasons::where('day', '>', Carbon::yesterday())->get();
+        $unBookings = UnBookReasons::where('day', '>',Carbon::today()->subWeek())
+                        ->orderByRaw('day DESC')->paginate(5);
         foreach ($unBookings as $unBooking) {
             $unBooking->user_id = User::find($unBooking->user_id)->name;
             $unBooking->room_id = Room::find($unBooking->room_id)->name;
         }
-        // dd($unBookings);
         return $unBookings;
     }
 

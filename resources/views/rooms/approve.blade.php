@@ -30,13 +30,13 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('room') }}</th>
-                                    <th scope="col">{{ __('user') }}</th>
-                                    <th scope="col">{{ __('from') }}</th>
-                                    <th scope="col">{{ __('to') }}</th>
-                                    <th scope="col">{{ __('day') }}</th>
-                                    <th scope="col">{{ __('delete') }}</th>
-                                    <th scope="col">{{ __('Approve') }}</th>
+                                    <th scope="col">{{ __('القاعة') }}</th>
+                                    <th scope="col">{{ __('امين الخدمة') }}</th>
+                                    <th scope="col">{{ __('من') }}</th>
+                                    <th scope="col">{{ __('الى') }}</th>
+                                    <th scope="col">{{ __('اليوم') }}</th>
+                                    <th scope="col">{{ __('الغاء') }}</th>
+                                    <th scope="col">{{ __('موافقة') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,6 +98,11 @@
                             </tbody>
                         </table>
                     </div>
+                    {{-- <div class="card-footer py-4">
+                        <nav class="d-flex justify-content-end" aria-label="...">
+                            {{ $bookings->links() }}
+                        </nav>
+                    </div> --}}
                 </div>
             </div>
         </div>
