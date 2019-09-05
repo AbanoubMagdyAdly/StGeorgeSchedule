@@ -27,9 +27,11 @@ class FindAvailableRoomRequest extends FormRequest
             'day'=> 'required',
             'from' => 'required',
             'to' => 'required|after:from',
-            'number' => 'required',
+            'number' => 'required|numeric|min:5',
             'meeting_name'=>'required',
             'responsible_person'=>'required',
+            'need_tv'=>'nullable',
+            'repeat'=>'nullable',
         ];
     }
 }

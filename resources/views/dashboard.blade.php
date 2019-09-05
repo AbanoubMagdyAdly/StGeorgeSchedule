@@ -68,8 +68,13 @@
                             @endif
                         </div>
                         <div class="custom-control custom-control-alternative custom-checkbox mb-3 text-center">
-                            <input class="custom-control-input" id="customCheck5" type="checkbox" name="need_tv">
-                            <label class="custom-control-label" for="customCheck5"><h3 class="text-center" >هل تريد شاشة</h3></label>
+                            <input class="custom-control-input" id="customCheck1" type="checkbox" name="need_tv">
+                            <label class="custom-control-label" for="customCheck1"><h3 class="text-center" >هل تريد شاشة</h3></label>
+                        </div>
+
+                        <div class="custom-control custom-control-alternative custom-checkbox mb-3 text-center">
+                            <input class="custom-control-input" id="customCheck2" type="checkbox" name="repeat">
+                            <label class="custom-control-label" for="customCheck2"><h3 class="text-center" >تكرر اسبوعياً</h3></label>
                         </div>
 
                         <div class="text-center">

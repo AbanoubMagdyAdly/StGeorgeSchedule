@@ -19,6 +19,8 @@ class BookingService
 
     public function bookRoom($data)
     {
+        $data->repeat = $data->repeat ? 1 : 0;
+
         DB::table('user_room')->insert([
             'room_id' => $data->room_id,
             'from' => $data->from,
@@ -27,6 +29,7 @@ class BookingService
             'user_id' => Auth::user()->id,
             'meeting_name' => $data->meeting_name,
             'responsible_person' => $data->responsible_person,
+            'repeating' => $data->repeat
         ]);
 
         Mail::to(env('SEND_TO', 'abanoub.magdy.adly@gmail.com'))
@@ -153,6 +156,7 @@ class BookingService
                 [DB::raw('DAYNAME(day)'), $d],
                 ['to', '>=', $data->from],
                 ['from', '<=', $data->to],
+                ['repeating', 1],
             ])->get();
 
         $rooms = $rooms->toArray();

@@ -65,6 +65,7 @@
                                                 <input name="day" value={{ $day }} hidden>
                                                 <input name="meeting_name" value='{{ $meeting_name }}' hidden>
                                                 <input name="responsible_person" value='{{ $responsible_person }}' hidden>
+                                                <input name="repeat" value='{{ $repeat }}' hidden>
                                                 <button type="submit" class="btn btn-success">
                                                     {{ __('احجز الان') }}
                                                 </button>

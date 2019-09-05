@@ -41,6 +41,7 @@ class ScheduleController extends Controller
             'day' => $request->day,
             'meeting_name' => $request->meeting_name,
             'responsible_person' => $request->responsible_person,
+            'repeat'=>$request->repeat
         ]);
     }
 
