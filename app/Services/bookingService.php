@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\User;
+use DateTime;
 use Carbon\Carbon;
 use App\Models\Room;
 use App\Mail\bookRoom;
@@ -77,6 +78,7 @@ class BookingService
 
     public function getBookedRoomsOnTime($data)
     {
+        $repeatedRooms = $this->getRepeatedBookings($data);
 
         $rooms = DB::table('user_room')->select('room_id')
             ->where([
@@ -85,8 +87,11 @@ class BookingService
                 ['from', '<=', $data->to],
             ])->get();
         $rooms = $rooms->toArray();
+
+        $unAvailableRooms = array_merge($repeatedRooms, $rooms);
+
         $bookedRooms = [];
-        foreach ($rooms as $key => $value) {
+        foreach ($unAvailableRooms as $key => $value) {
             $bookedRooms[] = $value->room_id;
         }
 
@@ -137,6 +142,21 @@ class BookingService
             $unBooking->room_id = Room::find($unBooking->room_id)->name;
         }
         return $unBookings;
+    }
+
+    public function getRepeatedBookings($data){
+        $d    = new DateTime($data->day);
+        $d = $d->format('l');
+
+        $rooms = DB::table('user_room')->select('room_id')
+            ->where([
+                [DB::raw('DAYNAME(day)'), $d],
+                ['to', '>=', $data->from],
+                ['from', '<=', $data->to],
+            ])->get();
+
+        $rooms = $rooms->toArray();
+        return $rooms;
     }
 
 }
