@@ -128,6 +128,14 @@
                     </li>
                 @endcan
 
+                @can('make booking')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('schedule.getUserBookings') }}">
+                            <i class="ni ni-glasses-2 text-red"></i> {{ __('حجزات خدمتى') }}
+                        </a>
+                    </li>
+                @endcan
+
                 @can('edit users')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('schedule.unbookReason') }}">

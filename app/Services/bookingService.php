@@ -163,4 +163,20 @@ class BookingService
         return $rooms;
     }
 
+
+    public function getUserBookings()
+    {
+        $bookings = UserRoom::where([
+            ['user_id', Auth::User()->id],
+            ['day', '>', Carbon::today()->subWeek()]
+            ])->orWhere('repeating',1)->orderByRaw('day DESC')->get();
+            
+        foreach ($bookings as $booking) {
+            $booking->user_id = User::find($booking->user_id)->name;
+            $booking->room_id = Room::find($booking->room_id)->name;
+        }
+
+        return $bookings;
+    }
+
 }

@@ -53,5 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
     ->name('schedule.secretarybooking')->middleware('permission:secretary booking');
     
     Route::get('schedule/unbookReason', 'ScheduleController@unbookReason')
-	->name('schedule.unbookReason')->middleware('permission:edit users');
+    ->name('schedule.unbookReason')->middleware('permission:edit users');
+    
+
+    Route::get('schedule/getUserBookings', 'ScheduleController@getUserBookings')->name('schedule.getUserBookings')
+        ->middleware('permission:make booking');
 });

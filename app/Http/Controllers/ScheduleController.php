@@ -25,7 +25,7 @@ class ScheduleController extends Controller
     {
         $bookings = $this->bookingService->getAllBooking();
 
-        return view('rooms.approve', ['bookings' => $bookings]);
+        return view('schedule.approve', ['bookings' => $bookings]);
     }
 
     public function find(FindAvailableRoomRequest $request)
@@ -87,5 +87,12 @@ class ScheduleController extends Controller
     public function unbookReason(){
         $unBookings = $this->bookingService->getUnBookReason();
         return view('rooms.unbookReason',['unBookings'=>$unBookings]);
+    }
+
+
+    public function getUserBookings(){
+        $bookings = $this->bookingService->getUserBookings();
+
+        return view('schedule.userBooking', ['bookings' => $bookings]);
     }
 }
