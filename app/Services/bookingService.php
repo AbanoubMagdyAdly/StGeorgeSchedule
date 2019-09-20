@@ -86,8 +86,8 @@ class BookingService
         $rooms = DB::table('user_room')->select('room_id')
             ->where([
                 ['day', '=', date("Y-m-d", strtotime($data->day))],
-                ['to', '>=', $data->from],
-                ['from', '<=', $data->to],
+                ['to', '>', $data->from],
+                ['from', '<', $data->to],
             ])->get();
         $rooms = $rooms->toArray();
 
@@ -154,8 +154,8 @@ class BookingService
         $rooms = DB::table('user_room')->select('room_id')
             ->where([
                 [DB::raw('DAYNAME(day)'), $d],
-                ['to', '>=', $data->from],
-                ['from', '<=', $data->to],
+                ['to', '>', $data->from],
+                ['from', '<', $data->to],
                 ['repeating', 1],
             ])->get();
 
