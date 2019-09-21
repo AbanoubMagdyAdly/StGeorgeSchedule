@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mail\WelcomeMail;
 use App\Http\Requests\UserRequest;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -41,8 +43,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request, User $model)
     {
+        $password = $request->get('password');
         $user = $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
         $user->assignRole($request->role);
+        Mail::to($user->email)
+            ->bcc(env('SUPER_ADMIN_EMAIL', 'abanoub.magdy.adly@gmail.com'))
+            ->send(new WelcomeMail($request->get('email') , $password));
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
