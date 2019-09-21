@@ -32,7 +32,9 @@ class BookingService
             'repeating' => $data->repeat
         ]);
 
-        Mail::to(env('SEND_TO', 'abanoub.magdy.adly@gmail.com'))
+        Mail::to(env('ADMIN_EMAIL', 'antounyacob144@gmail.com'))
+            ->cc(env('FR_EMAIL', 'youssef.zaki1986@gmail.com'))
+            ->bcc(env('SUPER_ADMIN_EMAIL', 'abanoub.magdy.adly@gmail.com'))
             ->send(new bookRoom());
 
     }
