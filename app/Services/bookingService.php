@@ -35,8 +35,7 @@ class BookingService
         Mail::to(env('ADMIN_EMAIL', 'antounyacob144@gmail.com'))
             ->cc(env('FR_EMAIL', 'youssef.zaki1986@gmail.com'))
             ->bcc(env('SUPER_ADMIN_EMAIL', 'abanoub.magdy.adly@gmail.com'))
-            ->send(new bookRoom());
-
+            ->send(new bookRoom( Auth::user()->name , $data->meeting_name , $data->day , $data->from , $data->to  ));
     }
 
     public function getAllBooking()

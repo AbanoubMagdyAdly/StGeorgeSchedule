@@ -14,8 +14,13 @@ class bookRoom extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user , $meeting_name , $day , $from , $to )
     {
+        $this->user = $user;
+        $this->meeting_name = $meeting_name;
+        $this->day = $day;
+        $this->from = $from;
+        $this->to = $to;
     }
 
     /**
@@ -26,6 +31,10 @@ class bookRoom extends Mailable
     public function build()
     {
         return $this->subject('Approve Request')
-                ->view('mail');
+                ->view('mail' ,['user'=>$this->user,
+                                'meeting_name' =>$this->meeting_name,
+                                'day' => $this->day,
+                                'from' => $this->from,
+                                'to'=> $this->to]);
     }
 }
