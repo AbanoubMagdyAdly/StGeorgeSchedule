@@ -31,11 +31,10 @@ class BookingService
             'responsible_person' => $data->responsible_person,
             'repeating' => $data->repeat
         ]);
-
         Mail::to(env('ADMIN_EMAIL', 'antounyacob144@gmail.com'))
             ->cc(env('FR_EMAIL', 'youssef.zaki1986@gmail.com'))
             ->bcc(env('SUPER_ADMIN_EMAIL', 'abanoub.magdy.adly@gmail.com'))
-            ->send(new bookRoom( Auth::user()->name , $data->meeting_name , $data->day , $data->from , $data->to  ));
+            ->send(new bookRoom($data));
     }
 
     public function getAllBooking()

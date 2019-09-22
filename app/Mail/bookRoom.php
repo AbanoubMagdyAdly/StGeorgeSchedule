@@ -9,18 +9,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class bookRoom extends Mailable
 {
-    /**
+    /* 
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user , $meeting_name , $day , $from , $to )
+    public function __construct($data)
     {
-        $this->user = $user;
-        $this->meeting_name = $meeting_name;
-        $this->day = $day;
-        $this->from = $from;
-        $this->to = $to;
+        $this->data = $data->all();
     }
 
     /**
@@ -31,10 +27,6 @@ class bookRoom extends Mailable
     public function build()
     {
         return $this->subject('Approve Request')
-                ->view('mail' ,['user'=>$this->user,
-                                'meeting_name' =>$this->meeting_name,
-                                'day' => $this->day,
-                                'from' => $this->from,
-                                'to'=> $this->to]);
+                ->view('mail' ,['data'=>$this->data]);
     }
 }

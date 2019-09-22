@@ -259,7 +259,7 @@
                                                                 style="font-size: 24px; background-color: #FFFFFF;"><span
                                                                     style="font-size: 24px; background-color: #FFFFFF;">برجاء الذهاب  للموقع و تأكيد الحجز </span></strong></span><br /><br /><span
                                                         style="color: #000000; font-size: 12px; background-color: #FFFFFF;"><strong><span
-                                                        style="font-size: 24px; background-color: #FFFFFF;">{{$meeting_name}} <br> {{$day}} <br> {{$from}} : {{$to}} <br> {{$user}}</span></strong></span></p>
+                                                        style="font-size: 24px; background-color: #FFFFFF;">{{$data['meeting_name']}} <br> {{$data['day']}} <br> {{$data['from']}} -> {{$data['to']}} <br> {{$data['responsible_person']}}</span></strong></span></p>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
                                             <div align="center" class="button-container"
