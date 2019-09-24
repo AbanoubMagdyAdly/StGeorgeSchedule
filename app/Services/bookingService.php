@@ -9,6 +9,7 @@ use App\Models\Room;
 use App\Mail\bookRoom;
 use App\Mail\deleteBook;
 use App\Models\UserRoom;
+use App\Mail\ApprovedBook;
 use App\Models\UnBookReasons;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -51,8 +52,14 @@ class BookingService
 
     public function approveBooking($data)
     {
-
-        UserRoom::where('id', $data->id)->update(['is_approved' => $data->approve]);
+        $query = UserRoom::where('id', $data->id);
+        $book = $query->get()[0];
+        $query->update(['is_approved' => $data->approve]);
+        if($data->approve === '1'){
+            Mail::to(User::find($book->user_id)->email)
+            ->bcc(env('SUPER_ADMIN_EMAIL', 'abanoub.magdy.adly@gmail.com'))
+            ->send(new ApprovedBook($book));
+        }
 
     }
 
@@ -64,6 +71,7 @@ class BookingService
         $user = User::find($book[0]->user_id);
 
         Mail::to($user->email)
+        ->bcc(env('SUPER_ADMIN_EMAIL', 'abanoub.magdy.adly@gmail.com'))
         ->send(new deleteBook($book[0], $data->reason));
 
         UnBookReasons::create([
