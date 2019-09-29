@@ -65,8 +65,8 @@ class ScheduleController extends Controller
     {
         $this->bookingService->deleteBooking($request, $id);
 
-        return redirect()->route('schedule.showall')
-        ->withStatus(__('schedule successfully deleted.'));
+        return redirect()->route('schedule.index')
+        ->withStatus(__('booking successfully deleted.'));
 
     }
 
